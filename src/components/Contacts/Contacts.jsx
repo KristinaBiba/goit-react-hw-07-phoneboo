@@ -1,13 +1,14 @@
 import { Li, Ul, P, Button } from './Contacts_css';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts, getFilter } from "redux/selectors";
-import { deleteContact } from 'redux/contactsSlice';
+import { getContacts, getFilter, getIsLoading } from "redux/selectors";
+import { deleteContact } from 'redux/operations';
 
 export const Contacts = () => {
 
       const contacts = useSelector(getContacts);
       const filter = useSelector(getFilter);
       const dispatch = useDispatch();
+      const isLoading = useSelector(getIsLoading);
 
       
       const toFiltredContacts = () => {
@@ -23,10 +24,10 @@ export const Contacts = () => {
       
       return (
           <Ul>
-                  {filtredContacts.map(({ id, name, number }) => (
+                  {filtredContacts.map(({ id, name, phone }) => (
                   <Li key={id}>
-                              <P>{name}: {number}</P>
-                              <Button onClick={()=> {onDeliteContact(id)}}>Delite</Button>
+                              <P>{name}: {phone}</P>
+                              <Button disabled={isLoading} onClick={() => { onDeliteContact(id) }}>Delite</Button>
                   </Li>))}
           </Ul>)
 };

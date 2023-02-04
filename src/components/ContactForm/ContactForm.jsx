@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Label, Input, Button } from "./ContactForm_css";
-import { getContacts } from "../../redux/selectors";
-import { addContact } from '../../redux/contactsSlice';
+import { getContacts } from "redux/selectors";
+import { addContact } from 'redux/operations';
 
 export function ContactForm () {
 
@@ -36,7 +36,7 @@ export function ContactForm () {
     const normalizeNewContactName = contactName.value.toLowerCase();
 
     contacts.find(contact => contact.name.toLowerCase() === normalizeNewContactName) ? alert(`${contactName.value} is already incontacts`) :
-    dispatch(addContact(contactName.value, contactNumber.value));
+    dispatch(addContact({name: contactName.value, phone: contactNumber.value}));
 
     setContactName('');
     setContactNumber('');

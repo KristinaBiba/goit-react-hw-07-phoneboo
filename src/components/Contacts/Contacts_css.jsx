@@ -4,7 +4,7 @@ export const Li = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 500px;
+  width: 600px;
   list-style: none;
   padding: 4px;
   margin: 8px;
@@ -27,4 +27,8 @@ export const Button = styled.button`
   text-transform: uppercase;
   background-color: black;
   border-radius: 6px;
-  cursor: pointer;`;
+  cursor: pointer;
+  
+  &:disabled: 
+  background-color: darkgray;
+  `;
