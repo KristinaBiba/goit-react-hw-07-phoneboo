@@ -5,11 +5,12 @@ import { Contacts } from './Contacts/Contacts';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { fetchContacts } from 'redux/operations';
-import { getIsLoading, getError } from 'redux/selectors';
+import { getIsLoading, getError, getContacts } from 'redux/selectors';
 
 export function App() {
   
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
   
@@ -26,7 +27,7 @@ export function App() {
           
         <Section title="Contacts">
           <Filter/>
-          {isLoading && !error && <b>Request in progress...</b>}
+          {isLoading && !error && contacts.length === 0 && <b style={{paddingLeft: '12px', fontSize: '24px'}}>Request in progress...</b>}
           <Contacts/>
         </Section> 
         
